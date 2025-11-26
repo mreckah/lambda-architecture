@@ -52,11 +52,13 @@ services:
       - SPARK_MASTER_HOST=spark-master-lambda
       - SPARK_MASTER_PORT=7077
       - SPARK_MASTER_WEBUI_PORT=8080
+      - SPARK_DIST_CLASSPATH=/opt/spark/jars/*
     ports:
       - "7078:7077"
       - "8082:8080"
     volumes:
       - ./app:/app
+      - /tmp/ivy2:/home/spark/.ivy2
     networks:
       - lambda-net
 
@@ -71,6 +73,7 @@ services:
       - SPARK_WORKER_CORES=2
       - SPARK_WORKER_MEMORY=2g
       - SPARK_WORKER_WEBUI_PORT=8081
+      - SPARK_DIST_CLASSPATH=/opt/spark/jars/*
     depends_on:
       - spark-master
     ports:
@@ -80,9 +83,52 @@ services:
     networks:
       - lambda-net
 
+  cassandra:
+    image: cassandra:4.1
+    container_name: cassandra-lambda
+    restart: always
+    environment:
+      - CASSANDRA_CLUSTER_NAME=lambda-cluster
+      - CASSANDRA_DC=datacenter1
+      - CASSANDRA_RACK=rack1
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - MAX_HEAP_SIZE=512M
+      - HEAP_NEWSIZE=100M
+    ports:
+      - "9042:9042"
+      - "9160:9160"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    networks:
+      - lambda-net
+    healthcheck:
+      test: ["CMD", "cqlsh", "-e", "describe keyspaces"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana-lambda
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_INSTALL_PLUGINS=hadesarchitect-cassandra-datasource
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - cassandra
+    networks:
+      - lambda-net
+
 volumes:
   hdfs_namenode:
   hdfs_datanode:
+  cassandra_data:
+  grafana_data:
 
 networks:
   lambda-net:
