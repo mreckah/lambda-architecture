@@ -1,0 +1,89 @@
+version: "3.8"
+
+services:
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode-lambda
+    restart: always
+    environment:
+      - CLUSTER_NAME=hadoop-cluster
+      - CORE_CONF_fs_defaultFS=hdfs://namenode-lambda:8020
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - HDFS_CONF_dfs_webhdfs_enabled=true
+      - HDFS_CONF_dfs_permissions_enabled=false
+      - HDFS_CONF_dfs_namenode_datanode_registration_ip___hostname___check=false
+    volumes:
+      - hdfs_namenode:/hadoop/dfs/name
+      - ./app:/app
+    ports:
+      - "9871:9870"
+      - "9000:9000"
+    networks:
+      - lambda-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9870"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode-lambda
+    restart: always
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode-lambda:8020
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - HDFS_CONF_dfs_webhdfs_enabled=true
+      - HDFS_CONF_dfs_permissions_enabled=false
+    volumes:
+      - hdfs_datanode:/hadoop/dfs/data
+    depends_on:
+      - namenode
+    networks:
+      - lambda-net
+
+  spark-master:
+    image: apache/spark:3.5.1
+    container_name: spark-master-lambda
+    restart: always
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master --host spark-master-lambda
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master-lambda
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+    ports:
+      - "7078:7077"
+      - "8082:8080"
+    volumes:
+      - ./app:/app
+    networks:
+      - lambda-net
+
+  spark-worker:
+    image: apache/spark:3.5.1
+    container_name: spark-worker-lambda
+    restart: always
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master-lambda:7077
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master-lambda:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_WORKER_WEBUI_PORT=8081
+    depends_on:
+      - spark-master
+    ports:
+      - "8083:8081"
+    volumes:
+      - ./app:/app
+    networks:
+      - lambda-net
+
+volumes:
+  hdfs_namenode:
+  hdfs_datanode:
+
+networks:
+  lambda-net:
+    driver: bridge
