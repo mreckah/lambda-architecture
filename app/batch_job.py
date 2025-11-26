@@ -1,39 +1,38 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, sum as spark_sum
 
-# Create Spark Session
+# ------------------------------
+# 1. Create Spark Session
+# ------------------------------
 spark = SparkSession.builder \
     .appName("BatchLayerJob") \
     .config("spark.hadoop.fs.defaultFS", "hdfs://namenode-lambda:8020") \
     .getOrCreate()
 
-print("=== Starting Batch Layer Job ===")
+# Hide Spark INFO/DEBUG logs
+spark.sparkContext.setLogLevel("ERROR")
 
 # ------------------------------
-# 1. Read historical dataset from HDFS
+# 2. Read dataset from HDFS
 # ------------------------------
-print("Reading data from HDFS...")
 df = spark.read.json("hdfs://namenode-lambda:8020/data/transactions.json")
 
-print(f"Total records: {df.count()}")
-df.show(5)
-
 # ------------------------------
-# 2. Aggregation: total per customer
+# 3. Aggregation: total amount per customer
 # ------------------------------
-print("Performing aggregation...")
-result = df.groupBy("customer").agg(
+totals = df.groupBy("customer").agg(
     spark_sum(col("amount")).alias("total_amount")
 )
 
-result.show()
+# ------------------------------
+# 4. Show results (total per user)
+# ------------------------------
+print("=== Total amount per customer ===")
+totals.show(truncate=False)
 
 # ------------------------------
-# 3. Save result to HDFS
+# 5. Save results to HDFS
 # ------------------------------
-print("Saving results to HDFS...")
-result.write.mode("overwrite").json("hdfs://namenode-lambda:8020/batch_view/")
-
-print("=== Batch job completed. Results saved to /batch_view/ ===")
+totals.write.mode("overwrite").json("hdfs://namenode-lambda:8020/batch_view/")
 
 spark.stop()

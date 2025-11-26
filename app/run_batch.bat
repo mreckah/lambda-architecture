@@ -14,7 +14,7 @@ docker exec namenode-lambda hdfs dfs -put -f /app/datasets/transactions.json /da
 
 echo.
 echo [3/3] Running Spark Batch Job...
-docker exec spark-master-lambda spark-submit ^
+docker exec spark-master-lambda /opt/spark/bin/spark-submit ^
     --master spark://spark-master-lambda:7077 ^
     /app/batch_job.py
 
@@ -22,4 +22,9 @@ echo.
 echo ============================================
 echo Batch job completed!
 echo ============================================
+echo.
+echo Viewing results from HDFS...
+docker exec namenode-lambda hdfs dfs -cat /batch_view/part-*
+
+echo.
 pause
