@@ -1,5 +1,50 @@
-{"customer": "Oussama", "amount": 120}
-{"customer": "Mreckah", "amount": 90}
-{"customer": "Nabbar", "amount": 200}
-{"customer": "Nabbar", "amount": 150}
-{"customer": "Oussama", "amount": 50}
+  {"customer": "Oussama", "sales": 120, "profit": 36, "category": "Electronics", "purchase_date": "2024-01-15", "region": "North", "product": "Smartphone"},
+  {"customer": "Mreckah", "sales": 90, "profit": 27, "category": "Clothing", "purchase_date": "2024-01-15", "region": "South", "product": "T-Shirt"},
+  {"customer": "Nabbar", "sales": 200, "profit": 50, "category": "Electronics", "purchase_date": "2024-01-14", "region": "East", "product": "Headphones"},
+  {"customer": "Nabbar", "sales": 150, "profit": 60, "category": "Home", "purchase_date": "2024-01-14", "region": "East", "product": "Lamp"},
+  {"customer": "Oussama", "sales": 50, "profit": 15, "category": "Books", "purchase_date": "2024-01-13", "region": "North", "product": "Novel"},
+  {"customer": "Mreckah", "sales": 180, "profit": 45, "category": "Electronics", "purchase_date": "2024-01-13", "region": "South", "product": "Tablet"},
+  {"customer": "Oussama", "sales": 75, "profit": 22.5, "category": "Clothing", "purchase_date": "2024-01-12", "region": "North", "product": "Jeans"},
+  {"customer": "Nabbar", "sales": 95, "profit": 28.5, "category": "Books", "purchase_date": "2024-01-12", "region": "East", "product": "Textbook"},
+  {"customer": "Chloe", "sales": 220, "profit": 66, "category": "Electronics", "purchase_date": "2024-01-16", "region": "West", "product": "Laptop"},
+  {"customer": "Mreckah", "sales": 45, "profit": 18, "category": "Clothing", "purchase_date": "2024-01-16", "region": "South", "product": "Socks"},
+
+  {"customer": "Chloe", "sales": 30, "profit": 12, "category": "Home", "purchase_date": "2024-01-11", "region": "West", "product": "Candle"},
+  {"customer": "Oussama", "sales": 300, "profit": 75, "category": "Electronics", "purchase_date": "2024-01-10", "region": "North", "product": "Smartwatch"},
+  {"customer": "Nabbar", "sales": 140, "profit": 42, "category": "Clothing", "purchase_date": "2024-01-09", "region": "East", "product": "Jacket"},
+  {"customer": "Chloe", "sales": 85, "profit": 25.5, "category": "Books", "purchase_date": "2024-01-09", "region": "West", "product": "Cookbook"},
+  {"customer": "Mreckah", "sales": 260, "profit": 78, "category": "Electronics", "purchase_date": "2024-01-08", "region": "South", "product": "Gaming Console"},
+  {"customer": "Oussama", "sales": 40, "profit": 10, "category": "Home", "purchase_date": "2024-01-08", "region": "North", "product": "Mug"},
+  {"customer": "Chloe", "sales": 110, "profit": 33, "category": "Clothing", "purchase_date": "2024-01-07", "region": "West", "product": "Sneakers"},
+  {"customer": "Nabbar", "sales": 55, "profit": 16.5, "category": "Books", "purchase_date": "2024-01-07", "region": "East", "product": "Thriller Novel"},
+  {"customer": "Mreckah", "sales": 310, "profit": 93, "category": "Electronics", "purchase_date": "2024-01-06", "region": "South", "product": "Monitor"},
+  {"customer": "Oussama", "sales": 95, "profit": 28.5, "category": "Clothing", "purchase_date": "2024-01-06", "region": "North", "product": "Jacket"},
+
+  {"customer": "Chloe", "sales": 180, "profit": 54, "category": "Electronics", "purchase_date": "2024-01-05", "region": "West", "product": "Bluetooth Speaker"},
+  {"customer": "Nabbar", "sales": 130, "profit": 39, "category": "Home", "purchase_date": "2024-01-05", "region": "East", "product": "Chair"},
+  {"customer": "Mreckah", "sales": 70, "profit": 21, "category": "Books", "purchase_date": "2024-01-04", "region": "South", "product": "Biography"},
+  {"customer": "Oussama", "sales": 210, "profit": 63, "category": "Electronics", "purchase_date": "2024-01-04", "region": "North", "product": "Router"},
+  {"customer": "Chloe", "sales": 42, "profit": 12.6, "category": "Clothing", "purchase_date": "2024-01-03", "region": "West", "product": "Scarf"},
+  {"customer": "Nabbar", "sales": 170, "profit": 51, "category": "Electronics", "purchase_date": "2024-01-03", "region": "East", "product": "Keyboard"},
+  {"customer": "Mreckah", "sales": 65, "profit": 19.5, "category": "Home", "purchase_date": "2024-01-02", "region": "South", "product": "Wall Clock"},
+  {"customer": "Oussama", "sales": 115, "profit": 34.5, "category": "Books", "purchase_date": "2024-01-02", "region": "North", "product": "History Book"},
+  {"customer": "Chloe", "sales": 310, "profit": 93, "category": "Electronics", "purchase_date": "2024-01-01", "region": "West", "product": "TV"},
+  {"customer": "Nabbar", "sales": 48, "profit": 12, "category": "Clothing", "purchase_date": "2024-01-01", "region": "East", "product": "Hat"},
+
+  {"customer": "Mreckah", "sales": 230, "profit": 57.5, "category": "Electronics", "purchase_date": "2024-01-17", "region": "South", "product": "Printer"},
+  {"customer": "Oussama", "sales": 85, "profit": 25.5, "category": "Home", "purchase_date": "2024-01-17", "region": "North", "product": "Table Lamp"},
+  {"customer": "Chloe", "sales": 260, "profit": 78, "category": "Electronics", "purchase_date": "2024-01-18", "region": "West", "product": "Drone"},
+  {"customer": "Nabbar", "sales": 95, "profit": 28.5, "category": "Books", "purchase_date": "2024-01-18", "region": "East", "product": "Science Book"},
+  {"customer": "Oussama", "sales": 60, "profit": 18, "category": "Clothing", "purchase_date": "2024-01-19", "region": "North", "product": "Gloves"},
+  {"customer": "Mreckah", "sales": 155, "profit": 46.5, "category": "Home", "purchase_date": "2024-01-19", "region": "South", "product": "Shelf"},
+  {"customer": "Chloe", "sales": 225, "profit": 67.5, "category": "Electronics", "purchase_date": "2024-01-20", "region": "West", "product": "Camera"},
+  {"customer": "Nabbar", "sales": 72, "profit": 21.6, "category": "Clothing", "purchase_date": "2024-01-20", "region": "East", "product": "Sweater"},
+  {"customer": "Oussama", "sales": 140, "profit": 42, "category": "Books", "purchase_date": "2024-01-21", "region": "North", "product": "Art Book"},
+  {"customer": "Chloe", "sales": 55, "profit": 22, "category": "Home", "purchase_date": "2024-01-21", "region": "West", "product": "Vase"},
+
+  {"customer": "Mreckah", "sales": 205, "profit": 61.5, "category": "Electronics", "purchase_date": "2024-01-22", "region": "South", "product": "Projector"},
+  {"customer": "Nabbar", "sales": 115, "profit": 34.5, "category": "Electronics", "purchase_date": "2024-01-22", "region": "East", "product": "Webcam"},
+  {"customer": "Oussama", "sales": 180, "profit": 54, "category": "Clothing", "purchase_date": "2024-01-23", "region": "North", "product": "Winter Coat"},
+  {"customer": "Chloe", "sales": 48, "profit": 14.4, "category": "Books", "purchase_date": "2024-01-23", "region": "West", "product": "Romance Novel"},
+  {"customer": "Mreckah", "sales": 130, "profit": 39, "category": "Home", "purchase_date": "2024-01-24", "region": "South", "product": "Floor Lamp"},
+  {"customer": "Oussama", "sales": 260, "profit": 78, "category": "Electronics", "purchase_date": "2024-01-24", "region": "North", "product": "Soundbar"}
