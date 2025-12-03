@@ -4,9 +4,8 @@
 Batch processing system for e-commerce data using Lambda Architecture. Processes historical data for business intelligence.
 
 ## Architecture
-```
-Batch Layer: HDFS + Spark → Serving Layer: Cassandra → Grafana Dashboards
-```
+
+![alt text](screens/lambda-architecture.gif)
 
 ## Documentation Sections
 
